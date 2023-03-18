@@ -17,3 +17,13 @@ resource "azurerm_subnet" "web-subnet" {
   virtual_network_name = azurerm_virtual_network.web-vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
+
+# Network Security Group
+resource "azurerm_network_security_group" "web-nsg" {
+  name                = "web-nsg"
+  location            = azurerm_resource_group.web-rg.location
+  resource_group_name = azurerm_resource_group.web-rg.name
+  tags = {
+    env = "dev"
+  }
+}
